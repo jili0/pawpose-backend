@@ -7,19 +7,19 @@ import { router as deleteRoutes } from "./deleteRoutes.js";
 
 export const AppRouter = Router();
 
-AppRouter.use("/admin", getRoutes);
-AppRouter.use("/admin", postRoutes);
-AppRouter.use("/admin", putRoutes);
-AppRouter.use("/admin", patchRoutes);
-AppRouter.use("/admin", deleteRoutes);
+AppRouter.use("/", getRoutes);
+AppRouter.use("/", postRoutes);
+AppRouter.use("/", putRoutes);
+AppRouter.use("/", patchRoutes);
+AppRouter.use("/", deleteRoutes);
 
 /*
-/admin/
-/admin/get/:id
-/admin/get/
-/admin/post/single
-/admin/post/many
-/admin/put/:id/
-/admin/patch/:id
-/admin/delete/:id
+/
+/get/:id
+/get/
+/post/single
+/post/many
+/put/:id/
+/patch/:id
+/delete/:id
 */

@@ -4,8 +4,8 @@ import { checkIsValid } from "../utils/checkIsValid.js";
 
 export const router = Router();
 
-router.get("/", (req, res) => {
-  res.status(200).json({ message: "CORS enabled" });
+router.get("/", (_req, res) => {
+  res.status(200).json({ message: "welcome!" });
 });
 
 router.get("/get/:id", checkIsValid, async (req, res, next) => {
