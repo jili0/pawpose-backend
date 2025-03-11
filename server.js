@@ -17,15 +17,14 @@ app.use(
   })
 );
 app.options("/admin", cors());
-const port = process.env.PORT;
 await db.connect();
 
 app.use("/", AppRouter);
 
 app.use(pathErrorHandler);
 app.use(errorMiddleware);
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running`);
 });
 
 process.on("unhandledRejection", (reason, promise) => {
