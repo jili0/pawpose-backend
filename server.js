@@ -11,16 +11,17 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.FRONTEND_DOMAIN || "http://localhost:5500",
+    origin: process.env.FRONTEND_DOMAIN,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.options("/admin", cors());
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 await db.connect();
 
 app.use("/", AppRouter);
+
 app.use(pathErrorHandler);
 app.use(errorMiddleware);
 app.listen(port, () => {
