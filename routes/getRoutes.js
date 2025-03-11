@@ -29,12 +29,33 @@ router.get("/get", async (req, res, next) => {
     } else {
       query = Animal.find({ deletedAt: null });
     }
+
+    if (req.query.page) {
+      const page = parseInt(req.query.page);
+      query = query.skip((page - 1) * 10).limit(10);
+    } else {
+      query = query.limit(10);
+    }
+
     const animals = await query.exec();
 
     if (!animals.length) {
       return res.status(404).json({ message: "Animals not found" });
     }
     res.status(200).json(animals);
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get("/count", async (req, res, next) => {
+  try {
+    const animalsCount = await Animal.countDocuments({ deletedAt: null });
+
+    if (!animalsCount) {
+      return res.status(404).json({ message: "Animals not found" });
+    }
+    res.status(200).json(animalsCount);
   } catch (e) {
     next(e);
   }
