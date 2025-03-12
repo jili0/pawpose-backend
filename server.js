@@ -16,7 +16,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.options("/admin", cors());
 await db.connect();
 
 app.use("/", AppRouter);
